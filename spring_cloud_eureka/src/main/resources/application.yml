@@ -1,0 +1,19 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /register-eureka
+spring:
+  application:
+    name: REGISTER-EUREKA
+eureka:
+  instance:
+    hostname: localhost
+    status-page-url-path: ${server.servlet.context-path}/info
+    health-check-url-path: ${server.servlet.context-path}/health
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+
