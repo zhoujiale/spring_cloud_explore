@@ -11,6 +11,7 @@
 
     <modules>
         <module>spring_cloud_eureka</module>
+        <module>spring_cloud_config</module>
         <module>commons</module>
     </modules>
 
@@ -49,6 +50,11 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-netflix-eureka-server</artifactId>
+                <version>${eureka-server.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-netflix-eureka-client</artifactId>
                 <version>${eureka-server.version}</version>
             </dependency>
         </dependencies>
