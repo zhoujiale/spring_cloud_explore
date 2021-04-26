@@ -13,5 +13,3 @@ eureka:
 spring:
   application:
     name: CONFIG
-logging:
-  level: debug
