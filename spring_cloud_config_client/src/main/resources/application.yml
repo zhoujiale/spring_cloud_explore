@@ -1,0 +1,10 @@
+server:
+  port: 9081
+  servlet:
+    context-path: /config-client
+spring:
+  application:
+    name: CONFIG-CLIENT
+
+
+
