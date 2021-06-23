@@ -1,0 +1,15 @@
+server:
+  port: 8085
+  servlet:
+    context-path: /consumer
+spring:
+  application:
+    name: consumer
+eureka:
+  instance:
+    hostname: 47.114.33.113
+    status-page-url-path: ${server.servlet.context-path}/info
+    health-check-url-path: ${server.servlet.context-path}/health
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}/register-eureka/eureka/

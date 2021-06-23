@@ -13,6 +13,8 @@
         <module>spring_cloud_eureka</module>
         <module>spring_cloud_config</module>
         <module>commons</module>
+        <module>producer</module>
+        <module>consumer</module>
     </modules>
 
     <properties>
@@ -24,6 +26,7 @@
         <lombok.version>1.18.12</lombok.version>
         <springfox.version>3.0.0</springfox.version>
         <docker-plugin.version>1.2.0</docker-plugin.version>
+        <openfeign.version>2.1.1.RELEASE</openfeign.version>
     </properties>
 
     <dependencyManagement>
@@ -56,6 +59,11 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
                 <version>${eureka-server.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${openfeign.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
