@@ -1,0 +1,22 @@
+spring:
+  cloud:
+      discovery:
+        enabled: true
+      config:
+        fail-fast: true
+        uri: http://localhost:8082/config
+        label: master
+        profile: dev
+        name: spring-cloud-config
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://47.114.33.113/register-eureka/eureka/
+

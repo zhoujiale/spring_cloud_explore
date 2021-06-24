@@ -6,34 +6,21 @@
         <groupId>com.zjl</groupId>
         <artifactId>spring_cloud_explore</artifactId>
         <version>1.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
-    <packaging>jar</packaging>
     <groupId>com.zjl</groupId>
-    <artifactId>commons</artifactId>
+    <artifactId>spring_cloud_gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>commons</name>
-    <description>Commons project for Spring Boot</description>
+    <name>spring_cloud_gateway</name>
+    <description>gateway</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-collections4</artifactId>
-        </dependency>
+
     </dependencies>
 
     <build>
-        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

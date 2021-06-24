@@ -9,7 +9,16 @@ eureka:
     health-check-url-path: ${server.servlet.context-path}/health
   client:
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:8081/register-eureka/eureka/
+      defaultZone: http://47.114.33.113/register-eureka/eureka/
 spring:
   application:
     name: CONFIG
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/zhoujiale1994/spring-cloud-config/
+          timeout: 10
+          search-paths: config-repo
+          username: 13588330822@163.com
+          password: 3.1415926fusheng
