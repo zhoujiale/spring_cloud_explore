@@ -1,10 +1,9 @@
 package com.zjl.consumer.service;
 
-import com.zjl.commons.util.WebResponse;
+import com.zjl.commons.util.response.WebResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -12,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Date: 2021-06-23 23:57
  * @Description:
  */
-@FeignClient(value = "producer",url = "localhost:8084/producer/")
+@Component
+@FeignClient(value = "producer-service",path = "/producer")
 public interface ProducerService {
 
     @GetMapping(value = "/api/data")
