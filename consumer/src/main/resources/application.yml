@@ -4,12 +4,13 @@ server:
     context-path: /consumer
 spring:
   application:
-    name: CONSUMER
+    name: consumer-service
 eureka:
   instance:
-    hostname: 47.114.33.113
-    status-page-url-path: ${server.servlet.context-path}/info
-    health-check-url-path: ${server.servlet.context-path}/health
+    hostname: localhost
   client:
     service-url:
-      defaultZone: http://${eureka.instance.hostname}/register-eureka/eureka/
+      defaultZone: http://47.114.33.113/register-eureka/eureka/
+logging:
+  level:
+    root: debug

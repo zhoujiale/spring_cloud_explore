@@ -4,12 +4,10 @@ server:
     context-path: /producer
 spring:
   application:
-    name: PRODUCER
+    name: producer-service
 eureka:
   instance:
-    hostname: 47.114.33.113
-    status-page-url-path: ${server.servlet.context-path}/info
-    health-check-url-path: ${server.servlet.context-path}/health
+    hostname: localhost
   client:
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:8081/register-eureka/eureka/
+      defaultZone: http://47.114.33.113/register-eureka/eureka/

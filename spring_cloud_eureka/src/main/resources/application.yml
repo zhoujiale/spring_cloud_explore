@@ -5,15 +5,22 @@ server:
 spring:
   application:
     name: REGISTER-EUREKA
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/zhoujiale1994/spring-cloud-config/
+          timeout: 10
+          search-paths: config-repo
 eureka:
   instance:
-    hostname: localhost
+    hostname: 47.114.33.113
     status-page-url-path: ${server.servlet.context-path}/info
     health-check-url-path: ${server.servlet.context-path}/health
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.hostname}/register-eureka/eureka/
 
 
