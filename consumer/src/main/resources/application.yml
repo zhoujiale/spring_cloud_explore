@@ -4,7 +4,7 @@ server:
     context-path: /consumer
 spring:
   application:
-    name: consumer
+    name: CONSUMER
 eureka:
   instance:
     hostname: 47.114.33.113
