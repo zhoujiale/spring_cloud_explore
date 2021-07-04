@@ -12,6 +12,7 @@ spring:
           uri: https://gitee.com/zhoujiale1994/spring-cloud-config/
           timeout: 10
           search-paths: config-repo
+        prefix: /config
 eureka:
   instance:
     hostname: 47.114.33.113
@@ -19,7 +20,7 @@ eureka:
     health-check-url-path: ${server.servlet.context-path}/health
   client:
     register-with-eureka: true
-    fetch-registry: true
+    fetch-registry: false
     service-url:
       defaultZone: http://${eureka.instance.hostname}/register-eureka/eureka/
 

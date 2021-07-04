@@ -9,7 +9,7 @@ eureka:
     health-check-url-path: ${server.servlet.context-path}/health
   client:
     service-url:
-      defaultZone: http://47.114.33.113/register-eureka/eureka/
+      defaultZone: http://localhost:8081/register-eureka/eureka/
 spring:
   application:
     name: CONFIG

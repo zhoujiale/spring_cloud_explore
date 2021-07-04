@@ -4,7 +4,7 @@ spring:
         enabled: true
       config:
         fail-fast: true
-        uri: http://localhost:8082/config
+        uri: http://47.114.33.113/register-eureka/config
         label: master
         profile: dev
         name: spring-cloud-config
@@ -14,9 +14,11 @@ management:
       exposure:
         include: refresh
 eureka:
+  instance:
+    hostname: 47.114.33.113
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://47.114.33.113/register-eureka/eureka/
+      defaultZone: http://${eureka.instance.hostname}/register-eureka/eureka/
 
