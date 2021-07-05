@@ -28,4 +28,10 @@ public class CustomerController {
     public WebResponse byZuul(){
         return WebResponse.success("zuul");
     }
+
+    @GetMapping(value = "/byGateway")
+    public WebResponse byGateway(){
+        return WebResponse.success("gateway");
+    }
+
 }

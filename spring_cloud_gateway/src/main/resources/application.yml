@@ -1,10 +1,13 @@
 server:
   port: 8086
   servlet:
-    context-path: /
+    context-path: /gateway
 spring:
   application:
     name: gateway-service
-  cloud:
-    gateway:
-      routes:
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://47.114.33.113/register-eureka/eureka/

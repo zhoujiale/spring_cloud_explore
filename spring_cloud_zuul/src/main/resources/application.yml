@@ -1,7 +1,5 @@
 server:
   port: 8087
-  servlet:
-    context-path: /zuul
 spring:
   application:
     name: zuul-service
@@ -13,7 +11,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://47.114.33.113/register-eureka/eureka/
+
 zuul:
+  prefix: /zuul
   routes:
     consumer-service:
       path: /consumer-service/**

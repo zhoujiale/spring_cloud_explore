@@ -6,17 +6,23 @@
         <groupId>com.zjl</groupId>
         <artifactId>spring_cloud_explore</artifactId>
         <version>1.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.zjl</groupId>
     <artifactId>spring_cloud_gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring_cloud_gateway</name>
     <description>gateway</description>
+    <packaging>jar</packaging>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
@@ -24,6 +30,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
