@@ -1,0 +1,10 @@
+server:
+  port: 8086
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:

@@ -13,6 +13,7 @@
         <module>spring_cloud_eureka</module>
         <module>spring_cloud_config</module>
         <module>spring_cloud_config_client</module>
+        <module>spring_cloud_zuul</module>
         <module>commons</module>
         <module>producer</module>
         <module>consumer</module>
@@ -24,6 +25,7 @@
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
         <eureka-server.version>2.2.2.RELEASE</eureka-server.version>
+        <zuul.version>2.2.2.RELEASE</zuul.version>
         <lombok.version>1.18.12</lombok.version>
         <springfox.version>3.0.0</springfox.version>
         <docker-plugin.version>1.2.0</docker-plugin.version>
@@ -33,6 +35,7 @@
         <commons-lang.version>3.11</commons-lang.version>
         <fastjson.version>1.2.68</fastjson.version>
         <openfeign.version>2.1.1.RELEASE</openfeign.version>
+        <gateway.version>2.2.2.RELEASE</gateway.version>
     </properties>
 
     <dependencyManagement>
@@ -105,6 +108,16 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-openfeign</artifactId>
                 <version>${openfeign.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+                <version>${zuul.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-gateway</artifactId>
+                <version>${gateway.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

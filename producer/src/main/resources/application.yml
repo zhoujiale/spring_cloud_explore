@@ -7,7 +7,7 @@ spring:
     name: producer-service
 eureka:
   instance:
-    hostname: 47.114.33.113
+    hostname: localhost
   client:
     service-url:
       defaultZone: http://47.114.33.113/register-eureka/eureka/

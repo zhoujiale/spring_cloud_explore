@@ -1,0 +1,20 @@
+server:
+  port: 8087
+  servlet:
+    context-path: /zuul
+spring:
+  application:
+    name: zuul-service
+eureka:
+  instance:
+    hostname: localhost
+    status-page-url-path: ${server.servlet.context-path}/info
+    health-check-url-path: ${server.servlet.context-path}/health
+  client:
+    service-url:
+      defaultZone: http://47.114.33.113/register-eureka/eureka/
+zuul:
+  routes:
+    consumer-service:
+      path: /consumer-service/**
+      serviceId: consumer-service

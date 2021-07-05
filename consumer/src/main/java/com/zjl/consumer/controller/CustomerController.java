@@ -23,4 +23,9 @@ public class CustomerController {
     public WebResponse getCustomer(@RequestParam(value = "name")String name){
         return producerService.getData(name);
     }
+
+    @GetMapping(value = "/byZuul")
+    public WebResponse byZuul(){
+        return WebResponse.success("zuul");
+    }
 }
