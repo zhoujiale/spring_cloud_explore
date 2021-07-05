@@ -15,9 +15,9 @@
         <module>spring_cloud_config_client</module>
         <module>spring_cloud_zuul</module>
         <module>spring_cloud_gateway</module>
+        <module>spring_cloud_consumer</module>
+        <module>spring_cloud_provider</module>
         <module>commons</module>
-        <module>producer</module>
-        <module>consumer</module>
     </modules>
 
     <properties>

@@ -6,13 +6,15 @@
         <groupId>com.zjl</groupId>
         <artifactId>spring_cloud_explore</artifactId>
         <version>1.0</version>
-        <relativePath/>
     </parent>
+
     <groupId>com.zjl</groupId>
-    <artifactId>consumer</artifactId>
+    <artifactId>spring_cloud_consumer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>consumer</name>
     <description>Demo project for Spring Boot</description>
+    <packaging>jar</packaging>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -42,6 +44,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
