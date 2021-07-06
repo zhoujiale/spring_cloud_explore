@@ -1,7 +1,7 @@
 package com.zjl.consumer.controller;
 
 import com.zjl.commons.util.response.WebResponse;
-import com.zjl.consumer.service.ProducerService;
+import com.zjl.consumer.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerController {
 
     @Autowired
-    private ProducerService producerService;
+    private ProviderService providerService;
 
     @GetMapping(value = "/getCustomer")
     public WebResponse getCustomer(@RequestParam(value = "name")String name){
-        return producerService.getData(name);
+        return providerService.getData(name);
     }
 
     @GetMapping(value = "/byZuul")

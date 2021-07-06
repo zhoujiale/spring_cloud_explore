@@ -1,17 +1,17 @@
-package com.zjl.producer;
+package com.zjl.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import springfox.documentation.oas.annotations.EnableOpenApi;
 
+@EnableFeignClients
 @EnableEurekaClient
 @SpringBootApplication
-public class ProducerApplication {
+public class SpringCloudConsumerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ProducerApplication.class, args);
+        SpringApplication.run(SpringCloudConsumerApplication.class, args);
     }
 
 }

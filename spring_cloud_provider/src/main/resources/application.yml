@@ -1,10 +1,10 @@
 server:
   port: 8084
   servlet:
-    context-path: /producer
+    context-path: /provider
 spring:
   application:
-    name: producer-service
+    name: provider-service
 eureka:
   instance:
     hostname: localhost

@@ -27,6 +27,7 @@
         <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
         <eureka-server.version>2.2.2.RELEASE</eureka-server.version>
         <zuul.version>2.2.2.RELEASE</zuul.version>
+        <hystrix.version>2.2.2.RELEASE</hystrix.version>
         <lombok.version>1.18.12</lombok.version>
         <springfox.version>3.0.0</springfox.version>
         <docker-plugin.version>1.2.0</docker-plugin.version>
@@ -114,6 +115,11 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
                 <version>${zuul.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+                <version>${hystrix.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>

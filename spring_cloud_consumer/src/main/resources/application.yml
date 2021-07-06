@@ -5,9 +5,15 @@ server:
 spring:
   application:
     name: consumer-service
+  main:
+    allow-bean-definition-overriding: true
 eureka:
   instance:
     hostname: localhost
   client:
     service-url:
       defaultZone: http://47.114.33.113/register-eureka/eureka/
+feign:
+  hystrix:
+    enabled: true
+
