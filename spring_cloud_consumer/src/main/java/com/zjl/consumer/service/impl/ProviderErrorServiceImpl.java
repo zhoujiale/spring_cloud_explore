@@ -2,6 +2,7 @@ package com.zjl.consumer.service.impl;
 
 import com.zjl.commons.util.response.WebResponse;
 import com.zjl.consumer.service.ProviderService;
+import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,9 +13,14 @@ import org.springframework.stereotype.Component;
  * @date 2021/07/06 18:26
  **/
 @Component
-public class ProviderErrorServiceImpl implements ProviderService {
+public class ProviderErrorServiceImpl implements FallbackFactory<ProviderService> {
     @Override
-    public WebResponse getData(String name) {
-        return WebResponse.fail("500","远程服务不可用");
+    public ProviderService create(Throwable throwable) {
+        return new ProviderService() {
+            @Override
+            public WebResponse getData(String name) {
+                return WebResponse.fail("500","远程服务不可用");
+            }
+        };
     }
 }

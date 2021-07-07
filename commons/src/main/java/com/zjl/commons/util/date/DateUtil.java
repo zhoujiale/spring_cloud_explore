@@ -93,4 +93,9 @@ public class DateUtil {
         return Date.from(instant);
     }
 
+    public static String localDateTimeToStr(LocalDateTime localDateTime,String format){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(format);
+        return dateTimeFormatter.format(localDateTime);
+    }
+
 }

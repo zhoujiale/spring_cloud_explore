@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Date: 2021-06-23 23:57
  * @Description:
  */
-@FeignClient(value = "provider-service",path = "/provider",fallback = ProviderErrorServiceImpl.class)
+@FeignClient(value = "provider-service",path = "/provider",fallbackFactory = ProviderErrorServiceImpl.class)
 public interface ProviderService {
 
     @GetMapping(value = "/api/data")

@@ -5,9 +5,31 @@ server:
 spring:
   application:
     name: gateway-service
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: before-route
+#          uri: lb://provider-service
+#          predicates:
+#            - Before=2021-07-07T17:38:35.808+08:00[Asia/Shanghai]
+#            - Path=/provider/api/beforeRoute
+#        - id: after-route
+#          uri: lb://provider-service
+#          predicates:
+#            - After=2021-07-07T17:38:35.808+08:00[Asia/Shanghai]
+#            - Path=/provider/api/afterRoute
+#        - id: between-route
+#          uri: lb://provider-service
+#          predicates:
+#            - Between=2021-07-07T17:38:35.808+08:00[Asia/Shanghai],2021-07-07T17:40:35.808+08:00[Asia/Shanghai]
+#            - Path=/provider/api/betweenRoute
+
 eureka:
   instance:
     hostname: localhost
   client:
     service-url:
       defaultZone: http://47.114.33.113/register-eureka/eureka/
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
