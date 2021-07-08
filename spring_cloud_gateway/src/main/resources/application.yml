@@ -32,4 +32,4 @@ eureka:
       defaultZone: http://47.114.33.113/register-eureka/eureka/
 logging:
   level:
-    org.springframework.cloud.gateway: debug
+    root: debug

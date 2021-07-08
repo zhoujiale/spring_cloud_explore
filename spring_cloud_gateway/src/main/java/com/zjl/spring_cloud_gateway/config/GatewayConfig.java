@@ -1,13 +1,11 @@
 package com.zjl.spring_cloud_gateway.config;
 
-import org.springframework.cloud.gateway.handler.predicate.AfterRoutePredicateFactory;
-import org.springframework.cloud.gateway.handler.predicate.BeforeRoutePredicateFactory;
-import org.springframework.cloud.gateway.handler.predicate.BetweenRoutePredicateFactory;
-import org.springframework.cloud.gateway.handler.predicate.CookieRoutePredicateFactory;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -25,27 +23,11 @@ public class GatewayConfig {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder routeBuilder) {
         String zoneStr = "Asia/Shanghai";
-        AfterRoutePredicateFactory afterRoutePredicateFactory = new AfterRoutePredicateFactory();
-        AfterRoutePredicateFactory.Config afterConfig = new AfterRoutePredicateFactory.Config();
         LocalDateTime afterDateTime = LocalDateTime.of(2021, 7, 7, 16, 25, 0);
-        afterConfig.setDatetime(afterDateTime.atZone(ZoneId.of(zoneStr)));
-
-        BeforeRoutePredicateFactory beforeRoutePredicateFactory = new BeforeRoutePredicateFactory();
-        BeforeRoutePredicateFactory.Config beforeConfig = new BeforeRoutePredicateFactory.Config();
         LocalDateTime beforeDateTime = LocalDateTime.of(2021, 7, 7, 15, 37, 0);
-        beforeConfig.setDatetime(beforeDateTime.atZone(ZoneId.of(zoneStr)));
-
-        BetweenRoutePredicateFactory betweenRoutePredicateFactory = new BetweenRoutePredicateFactory();
-        BetweenRoutePredicateFactory.Config betweenConfig = new BetweenRoutePredicateFactory.Config();
         LocalDateTime startDateTime = LocalDateTime.of(2021, 7, 7, 15, 50);
         LocalDateTime endDateTime = LocalDateTime.of(2021, 7, 7, 21, 55);
-        betweenConfig.setDatetime1(startDateTime.atZone(ZoneId.of(zoneStr)));
-        betweenConfig.setDatetime2(endDateTime.atZone(ZoneId.of(zoneStr)));
 
-        CookieRoutePredicateFactory cookieRoutePredicateFactory = new CookieRoutePredicateFactory();
-        CookieRoutePredicateFactory.Config cookieConfig = new CookieRoutePredicateFactory.Config();
-        cookieConfig.setName("UserName");
-        cookieConfig.setRegexp("^[a-z]*$");
         return routeBuilder.routes()
                 .route("consumer-service", r ->
                         r.path("/consumer/**")
@@ -53,24 +35,48 @@ public class GatewayConfig {
                 )
                 .route("before-route", r ->
                         r.path("/provider/api/beforeRoute")
+                                .and()
+                                .before(beforeDateTime.atZone(ZoneId.of(zoneStr)))
                                 .uri("lb://provider-service")
-                                .predicate(beforeRoutePredicateFactory.apply(beforeConfig))
-
                 )
                 .route("between-route", r ->
                         r.path("/provider/api/betweenRoute")
+                                .and()
+                                .between(startDateTime.atZone(ZoneId.of(zoneStr)), endDateTime.atZone(ZoneId.of(zoneStr)))
                                 .uri("lb://provider-service")
-                                .predicate(betweenRoutePredicateFactory.apply(betweenConfig))
                 )
                 .route("after-route", r ->
                         r.path("/provider/api/afterRoute")
+                                .and()
+                                .after(afterDateTime.atZone(ZoneId.of(zoneStr)))
                                 .uri("lb://provider-service")
-                                //.predicate(afterRoutePredicateFactory.apply(afterConfig))
                 )
                 .route("cookie-route", r ->
                         r.path("/provider/api/cookieRoute")
+                                .and()
+                                .cookie("UserName", "^[a-z]*$")
                                 .uri("lb://provider-service")
-                                .predicate(cookieRoutePredicateFactory.apply(cookieConfig)))
+                )
+                .route("header-route", r ->
+                        r.path("/provider/api/headerRoute")
+                                .and()
+                                .header("Token", "^[a-z]*$")
+                                .uri("lb://provider-service")
+                )
+                .route("query-route", r ->
+                        r.path("/provider/api/queryRoute")
+                                .and()
+                                .query("productName", "^[a-z]*$")
+                                .uri("lb://provider-service")
+                )
+                .route("circuit-route", r ->
+                        r.path("/provider/api/filterRoute")
+                                .filters(f -> f.circuitBreaker(c -> c.setName("myBreaker").setFallbackUri("forward:/fallback")))
+                                .uri("lb://provider-service"))
+                .route("retry-route", r ->
+                        r.path("/provider/api/retryRoute")
+                                .filters(f -> f.retry(c -> c.setRetries(3).setMethods(HttpMethod.GET, HttpMethod.POST).setStatuses(HttpStatus.NOT_FOUND)))
+                                .uri("lb://provider-service"))
                 .build();
     }
 }

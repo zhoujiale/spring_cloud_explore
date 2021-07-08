@@ -6,6 +6,7 @@ import com.zjl.commons.util.date.DateUtil;
 import com.zjl.commons.util.response.WebResponse;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -76,4 +77,28 @@ public class ProviderController {
         }
         return WebResponse.fail("500","未找到cookie");
     }
+
+    @ApiOperation(value = "网关断言header")
+    @GetMapping(value = "/headerRoute")
+    public WebResponse headerRoute(HttpServletRequest request){
+        String token = request.getHeader("Token");
+        if(null == token || token.equals(StringUtils.EMPTY)){
+            return WebResponse.fail("500","token为空");
+        }
+        return WebResponse.success("token:"+token);
+    }
+
+    @ApiOperation(value = "网关断言query")
+    @RequestMapping(value = "/queryRoute")
+    public WebResponse queryRoute(@RequestParam(value = "productName")String productName){
+        return WebResponse.success(productName);
+    }
+
+    @ApiOperation(value = "网关过滤请求")
+    @GetMapping(value = "/filterRoute")
+    public WebResponse filterRoute(){
+        throw new RuntimeException("响应异常");
+    }
+
+
 }
