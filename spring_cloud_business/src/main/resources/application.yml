@@ -1,0 +1,15 @@
+server:
+  port: 8093
+  servlet:
+    context-path: /buiness
+spring:
+  application:
+    name: buiness-service
+#eureka
+eureka:
+  instance:
+    hostname: 47.114.33.113
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}/register-eureka/eureka/

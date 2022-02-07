@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>com.zjl</groupId>
     <artifactId>commons</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>commons</name>
     <description>Commons project for Spring Boot</description>
     <properties>

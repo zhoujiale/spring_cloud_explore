@@ -1,4 +1,4 @@
-package com.zjl.consumer.model;
+package com.zjl.spring_cloud_explore.spring_cloud_account.model;
 
 import lombok.Data;
 

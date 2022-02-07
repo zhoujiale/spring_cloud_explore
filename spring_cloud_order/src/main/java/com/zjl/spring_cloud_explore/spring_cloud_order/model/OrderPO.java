@@ -1,4 +1,4 @@
-package com.zjl.producer.model;
+package com.zjl.spring_cloud_explore.spring_cloud_order.model;
 
 import lombok.Data;
 
@@ -26,12 +26,12 @@ public class OrderPO {
     @Column(name = "account_id",nullable = false,columnDefinition = "bigint(20) comment '账户id'")
     private Long accountId;
 
-    @Column(name = "book_id",nullable = false,columnDefinition = "bigint(20) comment '书本id'")
-    private Long bookId;
+    @Column(name = "productSn",nullable = false,columnDefinition = "varchar(32) comment '商品编号'")
+    private String productSn;
 
-    @Column(name = "number",nullable = false,columnDefinition = "int(11) default 0 comment '书本数量'")
+    @Column(name = "number",nullable = false,columnDefinition = "int(11) default 0 comment '商品数量'")
     private Integer number;
 
-    @Column(name = "total_price",nullable = false,columnDefinition = "decimal(6,2) default 0 comment '订单总价'")
+    @Column(name = "total_price",nullable = false,columnDefinition = "decimal(7,2) default 0 comment '订单总价'")
     private BigDecimal totalPrice;
 }
