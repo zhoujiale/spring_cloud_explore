@@ -13,9 +13,9 @@ import java.math.BigDecimal;
  * @date 2022/02/07 17:00
  * @description 账号服务
  **/
-@FeignClient(name = "account-service")
+@FeignClient(name = "account-service",path = "/account")
 public interface AccountFeignClient {
 
-    @PostMapping(value = "/subMoney")
+    @PostMapping(value = "/account/subMoney")
     WebResponse subMoney(@RequestParam(value = "customerId")Long customerId, @RequestParam(value = "money")BigDecimal money);
 }

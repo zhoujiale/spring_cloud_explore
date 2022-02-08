@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @date 2022/02/07 17:59
  * @description
  **/
-@FeignClient(name = "order-service")
+@FeignClient(name = "order-service",path = "/order")
 public interface OrderFeignClient {
 
-    @PostMapping(value = "/createOrder")
+    @PostMapping(value = "/order/createOrder")
     WebResponse createOrder(@RequestParam(value = "customerId") Long customerId, @RequestParam(value = "productSn") String productSn,
                             @RequestParam(value = "productCount") Integer productCount);
 }

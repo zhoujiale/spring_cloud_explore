@@ -2,6 +2,8 @@ package com.zjl.spring_cloud_explore.spring_cloud_stock.service;
 
 import com.zjl.spring_cloud_explore.spring_cloud_stock.model.StockPO;
 
+import java.math.BigDecimal;
+
 /**
  * @author zhou
  * @className StockService
@@ -28,4 +30,14 @@ public interface StockService {
      * @return com.zjl.spring_cloud_explore.spring_cloud_stock.model.StockPO
      **/
     StockPO queryOne(String productSn);
+
+    /**
+     * @description 创建库存商品
+     * @author zhou
+     * @create 2022/2/8 14:24
+     * @param price 价格
+     * @param count 数量
+     * @return com.zjl.spring_cloud_explore.spring_cloud_stock.model.StockPO
+     **/
+    StockPO createStock(BigDecimal price,Integer count);
 }

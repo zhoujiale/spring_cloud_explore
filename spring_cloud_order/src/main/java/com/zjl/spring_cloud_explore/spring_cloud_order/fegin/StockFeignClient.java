@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @date 2022/02/07 17:08
  * @description
  **/
-@FeignClient(name = "stock-service")
+@FeignClient(name = "stock-service",path = "/stock")
 public interface StockFeignClient {
 
-    @GetMapping(value = "/queryMoney")
-    WebResponse queryMoney(@RequestParam(value = "productId")String productId);
+    @GetMapping(value = "/stock/queryPrice")
+    WebResponse queryMoney(@RequestParam(value = "productSn")String productSn);
 }

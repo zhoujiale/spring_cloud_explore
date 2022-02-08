@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @date 2022/02/07 18:03
  * @description
  **/
-@FeignClient(value = "stock-service")
+@FeignClient(value = "stock-service",path = "/stock")
 public interface StockFeignClient {
 
-    @PostMapping(value = "/subStock")
+    @PostMapping(value = "/stock/subStock")
     WebResponse subStock(@RequestParam(value = "productSn")String productSn,@RequestParam(value = "productCount")Integer productCount);
 }

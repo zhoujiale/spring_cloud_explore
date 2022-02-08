@@ -8,6 +8,10 @@ import com.zjl.spring_cloud_explore.spring_cloud_stock.service.StockService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigDecimal;
+import java.util.UUID;
 
 /**
  * @author zhou
@@ -24,6 +28,7 @@ public class StockServiceImpl implements StockService {
     private StockRepository stockRepository;
 
     @Override
+    @Transactional
     public void deduct(String productSn, Integer productCount) {
         stockRepository.subCount(productSn, productCount);
     }
@@ -35,6 +40,17 @@ public class StockServiceImpl implements StockService {
             log.error("查询不到商品");
             throw new BusinessException(ResultCode.STOCK_EMPTY);
         }
+        return stockPO;
+    }
+
+
+    @Override
+    public StockPO createStock(BigDecimal price, Integer count) {
+        StockPO stockPO = new StockPO();
+        stockPO.setProductSn(UUID.randomUUID().toString().replaceAll("-",""));
+        stockPO.setPrice(price);
+        stockPO.setProductCount(count);
+        stockRepository.save(stockPO);
         return stockPO;
     }
 }

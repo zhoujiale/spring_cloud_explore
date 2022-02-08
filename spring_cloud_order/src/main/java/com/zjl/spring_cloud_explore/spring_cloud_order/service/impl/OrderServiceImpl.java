@@ -11,6 +11,7 @@ import com.zjl.spring_cloud_explore.spring_cloud_order.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -35,11 +36,15 @@ public class OrderServiceImpl implements OrderService {
     private StockFeignClient stockFeignClient;
 
     @Override
+    @Transactional
     public OrderPO create(Long customerId, Integer productCount, String productSn) {
+        if (true){
+            throw new BusinessException("5004","业务异常");
+        }
         //获取总价
         BigDecimal totalPrice = this.getTotal(productSn, productCount);
         //账户扣减
-        accountFeignClient.subMoney(customerId,totalPrice);
+        accountFeignClient.subMoney(customerId, totalPrice);
         //创建订单
         OrderPO orderPO = new OrderPO();
         orderPO.setAccountId(customerId);
@@ -51,22 +56,22 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
+     * @param productCount 商品数量
+     * @param productSn    商品编号
+     * @return java.math.BigDecimal
      * @description 计算订单价格
      * @author zhou
      * @create 2022/2/7 17:44
-     * @param productCount 商品数量
-     * @param productSn 商品编号
-     * @return java.math.BigDecimal
      **/
-    private BigDecimal getTotal(String productSn,Integer productCount){
+    private BigDecimal getTotal(String productSn, Integer productCount) {
         //计算订单价格
         WebResponse webResponse = stockFeignClient.queryMoney(productSn);
-        if (webResponse.getCode().equals(ResultCode.SUCCESS.getCode())){
-            BigDecimal price = (BigDecimal) webResponse.getData();
+        if (webResponse.getCode().equals(ResultCode.SUCCESS.getCode())) {
+            BigDecimal price = BigDecimal.valueOf((Double) webResponse.getData());
             return price.multiply(new BigDecimal(productCount));
-        }else {
+        } else {
             //异常
-            throw new BusinessException(webResponse.getCode(),webResponse.getMsg());
+            throw new BusinessException(webResponse.getCode(), webResponse.getMsg());
         }
     }
 }

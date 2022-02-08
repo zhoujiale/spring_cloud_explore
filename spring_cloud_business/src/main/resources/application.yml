@@ -1,10 +1,32 @@
 server:
   port: 8093
   servlet:
-    context-path: /buiness
+    context-path: /business
 spring:
   application:
     name: buiness-service
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+#seata
+seata:
+  #集群分组
+  tx-service-group: self_tx_group
+  #指定seata server
+  service:
+    vgroup-mapping:
+      self_tx_group: seata-server
+  #指定注册中心
+  registry:
+    type: eureka
+    eureka:
+      service-url: ${eureka.client.service-url.defaultZone}
+  #指定配置文件
+  config:
+    type: file
+    file:
+      name: application.yml
 #eureka
 eureka:
   instance:

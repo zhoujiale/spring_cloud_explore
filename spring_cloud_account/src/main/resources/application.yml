@@ -7,9 +7,28 @@ spring:
     name: account-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/ebook?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
-    username: root
-    password: root
+    url: jdbc:mysql://47.114.33.113:3306/spring_cloud?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: zjl
+    password: o7fBXanNqcyXseVvh3Zu8FXCclTEXHwc3WCqY4Jrb/NyP7vT2mG6mynPFQFewZ0LJf7WTemSIgnw8szRWAYYXw==
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: stat,config
+      #配置初始化大小、最小、最大
+      max-active: 20
+      initial-size: 1
+      min-idle: 1
+      #配置获取连接等待超时时间
+      max-wait: 60000
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      pool-prepared-statements: true
+      test-while-idle: true
+      max-pool-prepared-statement-per-connection-size: 50
+      filter:
+        config:
+          enabled: true
+      connection-properties: config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMEHLbu0kASdjAhnMrT/Xm+CpeOlytwF8k2Oph/bLVM920OQrdv9djpaMr13V5fcgWIxoRISGOw9xespSeYsbFkCAwEAAQ==
   jpa:
     hibernate:
       ddl-auto: update
@@ -19,6 +38,28 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+#seata
+seata:
+  #集群分组
+  tx-service-group: self_tx_group
+  #指定seata server
+  service:
+    vgroup-mapping:
+      self_tx_group: seata-server
+  #指定注册中心
+  registry:
+    type: eureka
+    eureka:
+      service-url: ${eureka.client.service-url.defaultZone}
+  #指定配置文件
+  config:
+    type: file
+    file:
+      name: application.yml
 #eureka
 eureka:
   instance:
