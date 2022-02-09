@@ -8,10 +8,10 @@ import com.zjl.spring_cloud_explore.spring_cloud_order.fegin.StockFeignClient;
 import com.zjl.spring_cloud_explore.spring_cloud_order.model.OrderPO;
 import com.zjl.spring_cloud_explore.spring_cloud_order.repository.OrderRepository;
 import com.zjl.spring_cloud_explore.spring_cloud_order.service.OrderService;
+import io.seata.core.context.RootContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -36,11 +36,9 @@ public class OrderServiceImpl implements OrderService {
     private StockFeignClient stockFeignClient;
 
     @Override
-    @Transactional
     public OrderPO create(Long customerId, Integer productCount, String productSn) {
-        if (true){
-            throw new BusinessException("5004","业务异常");
-        }
+        String xid = RootContext.getXID();
+        log.info("xid:{}",xid);
         //获取总价
         BigDecimal totalPrice = this.getTotal(productSn, productCount);
         //账户扣减
@@ -52,6 +50,10 @@ public class OrderServiceImpl implements OrderService {
         orderPO.setProductSn(productSn);
         orderPO.setTotalPrice(totalPrice);
         orderRepository.save(orderPO);
+        //if (true){
+        //    log.error("主动抛出异常");
+        //    throw new RuntimeException();
+        //}
         return orderPO;
     }
 

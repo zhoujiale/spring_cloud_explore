@@ -3,10 +3,10 @@ package com.zjl.spring_cloud_explore.spring_cloud_account.service.impl;
 import com.zjl.spring_cloud_explore.spring_cloud_account.model.AccountPO;
 import com.zjl.spring_cloud_explore.spring_cloud_account.repository.AccountRepository;
 import com.zjl.spring_cloud_explore.spring_cloud_account.service.AccountService;
+import io.seata.core.context.RootContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -25,8 +25,9 @@ public class AccountServiceImpl implements AccountService {
     private AccountRepository accountRepository;
 
     @Override
-    @Transactional
     public void debit(Long customerId, BigDecimal money) {
+        String xid = RootContext.getXID();
+        log.info("xid:{}",xid);
         accountRepository.subMoney(customerId, money);
     }
 

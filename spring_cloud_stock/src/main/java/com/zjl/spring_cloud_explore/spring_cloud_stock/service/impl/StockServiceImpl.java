@@ -8,7 +8,6 @@ import com.zjl.spring_cloud_explore.spring_cloud_stock.service.StockService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -28,7 +27,6 @@ public class StockServiceImpl implements StockService {
     private StockRepository stockRepository;
 
     @Override
-    @Transactional
     public void deduct(String productSn, Integer productCount) {
         stockRepository.subCount(productSn, productCount);
     }

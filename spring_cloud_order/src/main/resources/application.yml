@@ -68,3 +68,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://${eureka.instance.hostname}/register-eureka/eureka/
+
+logging:
+  level:
+    com.zjl.spring_cloud_explore.spring_cloud_order.fegin.AccountFeignClient: DEBUG

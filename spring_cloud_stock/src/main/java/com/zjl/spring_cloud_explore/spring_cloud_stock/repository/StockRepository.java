@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author zhou
@@ -15,6 +16,7 @@ import org.springframework.data.repository.query.Param;
 public interface StockRepository extends JpaRepository<StockPO,Long> {
 
     @Modifying
+    @Transactional(rollbackFor = Exception.class)
     @Query(value = "update StockPO as s set s.productCount = s.productCount - :productCount where s.productSn = :productSn and s.productCount > :productCount")
     int subCount(@Param("productSn") String productSn,@Param("productCount") Integer productCount);
 

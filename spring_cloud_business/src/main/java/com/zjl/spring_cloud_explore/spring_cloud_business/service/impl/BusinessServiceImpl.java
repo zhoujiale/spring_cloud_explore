@@ -1,7 +1,5 @@
 package com.zjl.spring_cloud_explore.spring_cloud_business.service.impl;
 
-import com.zjl.commons.util.constant.ResultCode;
-import com.zjl.commons.util.response.WebResponse;
 import com.zjl.spring_cloud_explore.spring_cloud_business.feign.OrderFeignClient;
 import com.zjl.spring_cloud_explore.spring_cloud_business.feign.StockFeignClient;
 import com.zjl.spring_cloud_explore.spring_cloud_business.service.BusinessService;
@@ -30,8 +28,9 @@ public class BusinessServiceImpl implements BusinessService {
     @GlobalTransactional(rollbackFor = Exception.class)
     public void commitOrder(Long customerId, Integer productCount, String productSn) {
         stockFeignClient.subStock(productSn, productCount);
-        WebResponse createOrderResponse = orderFeignClient.createOrder(customerId, productSn, productCount);
-        if (!createOrderResponse.getCode().equals(ResultCode.SUCCESS.getCode())){
+        orderFeignClient.createOrder(customerId, productSn, productCount);
+        if (true){
+            log.error("主动抛出异常");
             throw new RuntimeException();
         }
     }
