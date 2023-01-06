@@ -1,0 +1,10 @@
+server:
+  port: 7002
+  servlet:
+    context-path: /zoo
+spring:
+  cloud:
+    zookeeper:
+      connect-string: 47.114.33.113:2181
+  application:
+    name: ZOO

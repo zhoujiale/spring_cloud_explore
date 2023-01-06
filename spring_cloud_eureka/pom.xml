@@ -11,7 +11,6 @@
     <groupId>com.zjl</groupId>
     <artifactId>spring_cloud_eureka</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>eureka</name>
     <description>Eureka project for Spring Boot</description>
     <packaging>jar</packaging>
 

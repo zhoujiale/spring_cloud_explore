@@ -12,7 +12,6 @@
     <groupId>com.zjl</groupId>
     <artifactId>spring_cloud_provider</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>producer</name>
     <description>Demo project for Spring Boot</description>
     <packaging>jar</packaging>
 
@@ -24,7 +23,7 @@
         <dependency>
             <groupId>com.zjl</groupId>
             <artifactId>commons</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

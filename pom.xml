@@ -22,6 +22,7 @@
         <module>spring_cloud_stock</module>
         <module>spring_cloud_business</module>
         <module>commons</module>
+        <module>spring_cloud_zookeeper</module>
     </modules>
 
     <properties>
@@ -45,6 +46,7 @@
         <resilience4j.version>2.0.2</resilience4j.version>
         <seata.version>1.4.2</seata.version>
         <alibaba-cloud.version>2.2.0.RELEASE</alibaba-cloud.version>
+        <zookeeper.verion>2.2.3.RELEASE</zookeeper.verion>
     </properties>
 
     <dependencyManagement>
@@ -152,6 +154,11 @@
                 <groupId>io.seata</groupId>
                 <artifactId>seata-spring-boot-starter</artifactId>
                 <version>${seata.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+                <version>${zookeeper.verion}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

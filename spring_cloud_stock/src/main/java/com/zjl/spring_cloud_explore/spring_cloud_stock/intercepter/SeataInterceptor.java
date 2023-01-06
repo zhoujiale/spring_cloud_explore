@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author zhou
  * @version 1.0
  * @className SeataInterceptor
- * @description
+ * @description  在服务被调用端添加拦截器，获取上游传入的rpcXid,和本地的上下文绑定到一起
  * @date 2022/02/09 12:10
  **/
 @Slf4j

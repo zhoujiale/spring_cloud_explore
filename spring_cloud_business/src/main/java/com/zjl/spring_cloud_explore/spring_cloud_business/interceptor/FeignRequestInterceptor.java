@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @author zhou
  * @version 1.0
  * @className FeignRequestInterceptor
- * @description
+ * @description 重写feign 的请求头，添加自定义的参数。目的将分布式事务的Xid传递到下游
  * @date 2022/02/09 12:28
  **/
 @Slf4j
