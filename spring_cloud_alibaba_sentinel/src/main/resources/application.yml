@@ -1,0 +1,29 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: SENTINEL-DEMO
+  cloud:
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+          # router id lower
+          lower-case-service-id: true
+      routes:
+        - id: httpbin-route
+          uri: https://httpbin.org
+          predicates:
+            - Path=/httpbin/**
+          filters:
+            - RewritePath=/httpbin/(?<segment>.*), /$\{segment}
+        - id: demo-route
+          uri: http://127.0.0.1:8090/
+          predicates:
+            - Path=/demo/**
+    sentinel:
+      transport:
+        dashboard: localhost:9090
+logging:
+  level:
+    com.alibaba.cloud.sentinel: debug

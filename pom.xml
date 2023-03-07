@@ -23,6 +23,7 @@
         <module>spring_cloud_business</module>
         <module>commons</module>
         <module>spring_cloud_zookeeper</module>
+        <module>spring_cloud_alibaba_sentinel</module>
     </modules>
 
     <properties>
@@ -47,6 +48,7 @@
         <seata.version>1.4.2</seata.version>
         <alibaba-cloud.version>2.2.0.RELEASE</alibaba-cloud.version>
         <zookeeper.verion>2.2.3.RELEASE</zookeeper.verion>
+        <sentinel-dubbo.version>1.7.1</sentinel-dubbo.version>
     </properties>
 
     <dependencyManagement>
@@ -62,6 +64,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${alibaba-cloud.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -159,6 +168,16 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
                 <version>${zookeeper.verion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+                <version>${alibaba-cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-sentinel-gateway</artifactId>
+                <version>${alibaba-cloud.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
